@@ -8,6 +8,11 @@ conn = sqlite3.connect('data/data.db')
 pokemon = pd.read_csv('data/pokemon.csv')
 pokedex = pd.read_csv('data/pokedex.csv')
 
+pd.set_option('display.max_rows', None)      # Show all rows
+pd.set_option('display.max_columns', None)   # Show all columns
+pd.set_option('display.width', None)         # Don't wrap columns
+pd.set_option('display.max_colwidth', None)  # Show full column contents
+
 # Create tables
 pokemon.to_sql('pokemon', conn, if_exists='replace', index=False)
 pokedex.to_sql('pokedex', conn, if_exists='replace', index=False)
@@ -16,12 +21,9 @@ pokedex.to_sql('pokedex', conn, if_exists='replace', index=False)
 query = """
 SELECT *
 FROM pokemon
-LEFT JOIN pokedex
-ON pokemon.Name LIKE '%' || pokedex.name || '%'
 WHERE Generation < 5
-    AND pokedex.name NOT LIKE '%Mega%'
-    AND pokedex.name NOT LIKE '%Primal%'
-ORDER BY pokedex_number
+    AND Name NOT LIKE '%Mega%'
+    AND Name NOT LIKE '%Primal%'
 """
 df_clean = pd.read_sql(query, conn)
 
