@@ -15,12 +15,7 @@ query = """
         defense,
         sp_attack,
         sp_defense,
-        speed,
-        base_total,
-        height_m,
-        weight_kg,
-        generation,
-        is_legendary
+        speed
     FROM pokemon
     WHERE generation < 5
     """
