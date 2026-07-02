@@ -157,9 +157,14 @@ body {
     outline: none;
 }
 
+input {
+    text-transform: uppercase;
+}
+
 input::placeholder {
-  color: #222021;
-  opacity: 1;
+    text-transform: none;
+    color: #222021;
+    opacity: 1;
 }
 
 /* -- Buttons--  */
